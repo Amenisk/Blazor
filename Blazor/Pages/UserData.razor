@@ -1,0 +1,46 @@
+﻿@page "/userdata"
+
+<PageTitle>User data</PageTitle>
+
+@using Blazor.Data
+@inject UnitService Unit
+
+<h1>Unit service</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (units == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unit in units)
+            {
+                <tr>
+                    <td>@unit.Name</td>
+                    <td>@unit.Surname</td>
+                    <td>@unit.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Unit[]? units;
+
+    protected override async Task OnInitializedAsync()
+    {
+        units = await Unit.GetForecastAsync(DateTime.Now);
+    }
+}
