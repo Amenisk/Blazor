@@ -37,10 +37,10 @@ else
 }
 
 @code {
-    private Unit[]? units;
+    private List<Unit>? units;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        units = await Unit.GetForecastAsync(DateTime.Now);
+        units = Unit.GetForecastAsync(DateTime.Now);
     }
 }
