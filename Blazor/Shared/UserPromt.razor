@@ -1,0 +1,47 @@
+@using Blazor.Data
+
+@if (Users.Count() == 0)
+{
+    <p><em>Loading...</em></p>
+}
+else if (Users.Count() > 1)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Users)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    user = Users.First();
+
+    <div class="card" style="width: 250px">
+        <div class="card-body">
+            <p>Name: @user.Name</p>
+            <p>Surname: @user.Surname</p>
+            <p>Age: @user.Age</p>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<User>? Users { get; set; } = new List<User>();
+
+    public User? user;
+}

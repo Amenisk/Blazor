@@ -1,6 +1,6 @@
 ﻿namespace Blazor.Data
 {
-    public class UnitService
+    public class UserService
     {
         private static readonly string[] Names = new[]
         {
@@ -12,9 +12,9 @@
         "Shmidt", "Aknaev", "Lor", "Linaev", "Sogth", "Lason"
         };
 
-        public List<Unit> GetForecastAsync(DateTime startDate)
+        public static List<User> GetUserList()
         {
-            return Enumerable.Range(1, 5).Select(index => new Unit
+            return Enumerable.Range(1, Random.Shared.Next(1, 7)).Select(index => new User
             {
                 Name = Names[Random.Shared.Next(Names.Length)],
                 Surname = Surnames[Random.Shared.Next(Surnames.Length)],
